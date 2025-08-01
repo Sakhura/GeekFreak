@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeekFreak - Somos Legión</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Animated background elements -->
+    <div class="clouds">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+    </div>
+    
+    <div class="power-ups">
+        <div class="power-up">🍄</div>
+        <div class="power-up">⭐</div>
+        <div class="power-up">🌟</div>
+        <div class="power-up">💎</div>
+        <div class="power-up">🎮</div>
+    </div>
+    
+    <!-- Score display -->
+    <div class="score">
+        <span class="coin">🪙</span>SCORE: 999999
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">GEEKFREAK</h1>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <ul>
+                <li><a href="#home">🏠 INICIO</a></li>
+                <li><a href="#services">🎮 SERVICIOS</a></li>
+                <li><a href="#courses">⭐ CURSOS</a></li>
+                <li><a href="#projects">👥 PROYECTOS</a></li>
+                <li><a href="#contact">📧 CONTACTO</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main content -->
+    <main class="main">
+        <div class="container">
+            <!-- Hero section -->
+            <section class="hero">
+                <h1>¡NIVEL UP TU CARRERA EN TI!</h1>
+                <p>Desarrollamos software, asesoramos proyectos y formamos a los mejores profesionales TI con metodología retro-gaming. ¡Presiona START y comienza tu transformación digital!</p>
+                <a href="#services" class="cta-button">💻 ¡INICIAR MISIÓN!</a>
+            </section>
+            
+            <!-- Features -->
+            <section class="features">
+                <div class="feature-card">
+                    <span class="feature-icon">💻</span>
+                    <h3>DESARROLLO SOFTWARE</h3>
+                    <p>Creamos aplicaciones web, móviles y sistemas empresariales con las últimas tecnologías. Desde MVP hasta soluciones enterprise escalables.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>CONSULTORÍA TI</h3>
+                    <p>Asesoramos en arquitectura de software, transformación digital y optimización de procesos. Tu empresa al siguiente nivel tecnológico.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎓</span>
+                    <h3>CURSOS & BOOTCAMPS</h3>
+                    <p>Formación intensiva en programación, DevOps, ciberseguridad y más. Metodología gamificada que hace el aprendizaje adictivo.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>TECNOLOGÍAS FULL STACK</h3>
+                    <p>Dominamos React, Node.js, Python, Docker, AWS, Azure y más. Stack tecnológico completo para cualquier desafío.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🚀</span>
+                    <h3>AUTOMATIZACIÓN</h3>
+                    <p>Implementamos CI/CD, DevOps y automatización de procesos. Acelera tu desarrollo y mejora la calidad del código.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🛡️</span>
+                    <h3>CIBERSEGURIDAD</h3>
+                    <p>Protegemos tu infraestructura con las mejores prácticas de seguridad. Auditorías, pentesting y formación especializada.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 GEEKFREAK - DESARROLLAMOS EL FUTURO CON ESTILO RETRO | GAME OVER? CTRL+Z TO CONTINUE!</p>
+        </div>
+    </footer>
+     <!-- Floating Chatbox -->
+    <div class="chatbox-container">
+        <div class="chatbox-button" id="chatboxBtn">
+            💬
+            <div class="chat-notification" id="chatNotification">1</div>
+        </div>
+        
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                🤖 GEEK ASSISTANT v2.0
+                <div class="chat-close" id="chatClose">×</div>
+            </div>
+            
+            <div class="chat-body" id="chatBody">
+                <div class="chat-message bot">
+                    <strong>¡Hola Developer! 👋</strong><br><br>
+                    Soy tu asistente virtual de GeekFreak. ¿En qué puedo ayudarte hoy?<br><br>
+                    • Información sobre servicios<br>
+                    • Consultas técnicas<br>
+                    • Cotizaciones de proyectos<br>
+                    • Cursos disponibles
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Escribe tu mensaje...">
+                <button class="chat-send" id="chatSend">SEND</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
