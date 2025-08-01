@@ -7,13 +7,44 @@
     
     <!-- CSS específico para cursos -->
     <link rel="stylesheet" href="css/courses.css">
+    <!-- CSS del menú hamburguesa -->
+    <link rel="stylesheet" href="css/mobile-menu.css">
     
     <!-- JavaScript específico para cursos -->
     <script src="js/courses.js" defer></script>
+    <!-- JavaScript del menú hamburguesa -->
+    <script src="js/mobile-menu.js" defer></script>
 </head>
 <body class="page-courses">
     <!-- Logo Mini para volver al index -->
-   <a href="index.html" class="logo-mini" title="Volver al Hub GeekFreak">GF</a>
+    <a href="index.html" class="logo-mini" title="Volver al Hub GeekFreak">GF</a>
+
+    <!-- Menú Hamburguesa (solo visible en móvil) -->
+    <div class="hamburger-menu">
+        <div class="hamburger-btn" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+    </div>
+
+    <!-- Overlay para cerrar menú -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+    <!-- Navegación móvil -->
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="mobile-nav-title">GEEKFREAK</div>
+            <div class="mobile-nav-subtitle">ACADEMY</div>
+        </div>
+        <ul>
+            <li><a href="index.html">🏠 INICIO</a></li>
+            <li><a href="servicios.html">💻 SERVICIOS</a></li>
+            <li><a href="cursos.html">🎓 CURSOS</a></li>
+            <li><a href="proyectos.html">🚀 PROYECTOS</a></li>
+            <li><a href="contacto.html">📧 CONTACTO</a></li>
+        </ul>
+    </nav>
 
     <!-- Animated background -->
     <div class="stars" id="stars"></div>

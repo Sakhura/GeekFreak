@@ -1,0 +1,203 @@
+// Mobile Menu JavaScript - mobile-menu.js
+// Menú Hamburguesa para Móviles
+
+// Variables del menú móvil
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileNav = document.getElementById('mobileNav');
+const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+let isMobileMenuOpen = false;
+
+// Función para abrir/cerrar menú
+function toggleMobileMenu() {
+    isMobileMenuOpen = !isMobileMenuOpen;
+    
+    if (isMobileMenuOpen) {
+        openMobileMenu();
+    } else {
+        closeMobileMenu();
+    }
+}
+
+// Función para abrir menú
+function openMobileMenu() {
+    if (!hamburgerBtn || !mobileNav || !mobileNavOverlay) return;
+    
+    hamburgerBtn.classList.add('active');
+    mobileNav.classList.add('active');
+    mobileNavOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevenir scroll
+    
+    // Efecto de sonido visual
+    hamburgerBtn.style.transform = 'scale(1.1)';
+    setTimeout(() => {
+        hamburgerBtn.style.transform = '';
+    }, 200);
+    
+    // Animar elementos del menú
+    animateMobileMenuItems();
+}
+
+// Función para cerrar menú
+function closeMobileMenu() {
+    if (!hamburgerBtn || !mobileNav || !mobileNavOverlay) return;
+    
+    hamburgerBtn.classList.remove('active');
+    mobileNav.classList.remove('active');
+    mobileNavOverlay.classList.remove('active');
+    document.body.style.overflow = 'auto'; // Restaurar scroll
+    isMobileMenuOpen = false;
+    
+    // Efecto de sonido visual
+    hamburgerBtn.style.transform = 'scale(0.9)';
+    setTimeout(() => {
+        hamburgerBtn.style.transform = '';
+    }, 200);
+}
+
+// Animación de entrada para los elementos del menú
+function animateMobileMenuItems() {
+    const menuItems = document.querySelectorAll('.mobile-nav a');
+    menuItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(30px)';
+        
+        setTimeout(() => {
+            item.style.transition = 'all 0.3s ease';
+            item.style.opacity = '1';
+            item.style.transform = 'translateX(0)';
+        }, index * 100 + 200);
+    });
+}
+
+// Event listeners
+if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', toggleMobileMenu);
+}
+
+if (mobileNavOverlay) {
+    mobileNavOverlay.addEventListener('click', closeMobileMenu);
+}
+
+// Cerrar menú al hacer clic en un enlace
+const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        closeMobileMenu();
+        
+        // Efecto visual en el link
+        link.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            link.style.transform = '';
+        }, 150);
+    });
+});
+
+// Cerrar menú con tecla Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isMobileMenuOpen) {
+        closeMobileMenu();
+    }
+});
+
+// Cerrar menú al cambiar orientación
+window.addEventListener('orientationchange', () => {
+    if (isMobileMenuOpen) {
+        setTimeout(closeMobileMenu, 500);
+    }
+});
+
+// Cerrar menú si se redimensiona a desktop
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && isMobileMenuOpen) {
+        closeMobileMenu();
+    }
+});
+
+// Detectar dispositivo móvil y ajustar comportamiento
+function isMobileDevice() {
+    return window.innerWidth <= 768;
+}
+
+// Mejorar experiencia táctil en móviles
+if ('ontouchstart' in window) {
+    // Agregar efectos táctiles
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('touchstart', function() {
+            this.style.backgroundColor = 'rgba(78, 205, 196, 0.2)';
+        });
+        
+        link.addEventListener('touchend', function() {
+            setTimeout(() => {
+                this.style.backgroundColor = '';
+            }, 200);
+        });
+    });
+}
+
+// Prevenir zoom en iOS al hacer doble tap
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function (event) {
+    const now = (new Date()).getTime();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
+    lastTouchEnd = now;
+}, false);
+
+// Función para actualizar el estado del menú según la página actual
+function updateMobileMenuForCurrentPage() {
+    const currentPage = window.location.pathname.split('/').pop();
+    const menuLinks = document.querySelectorAll('.mobile-nav a');
+    
+    menuLinks.forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+            link.style.borderLeftColor = '#4ECDC4';
+            link.style.backgroundColor = 'rgba(78, 205, 196, 0.1)';
+        }
+    });
+}
+
+// Función para actualizar subtítulo según la página
+function updateMobileMenuSubtitle() {
+    const subtitle = document.querySelector('.mobile-nav-subtitle');
+    if (!subtitle) return;
+    
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    switch(currentPage) {
+        case 'servicios.html':
+            subtitle.textContent = 'SERVICES';
+            break;
+        case 'cursos.html':
+            subtitle.textContent = 'ACADEMY';
+            break;
+        case 'proyectos.html':
+            subtitle.textContent = 'PORTFOLIO';
+            break;
+        case 'contacto.html':
+            subtitle.textContent = 'CONTACT';
+            break;
+        default:
+            subtitle.textContent = 'PORTAL GAMING';
+    }
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    updateMobileMenuForCurrentPage();
+    updateMobileMenuSubtitle();
+});
+
+// Exportar funciones para uso externo
+window.MobileMenu = {
+    toggle: toggleMobileMenu,
+    open: openMobileMenu,
+    close: closeMobileMenu,
+    isOpen: () => isMobileMenuOpen
+};
+
+// Debug info (solo en desarrollo)
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    console.log('🎮 GeekFreak Mobile Menu loaded successfully!');
+}
