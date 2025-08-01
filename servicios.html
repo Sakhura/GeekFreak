@@ -3,521 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeekFreak - Subiendo de Nivel...</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Press Start 2P', cursive;
-            background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        /* Animated stars background */
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-        
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 2s infinite alternate;
-        }
-        
-        @keyframes twinkle {
-            0% { opacity: 0.3; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.2); }
-        }
-        
-        /* Main container */
-        .construction-container {
-            text-align: center;
-            max-width: 800px;
-            padding: 40px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 5px solid #FFD700;
-            border-radius: 20px;
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
-            position: relative;
-            z-index: 10;
-        }
-        
-        .construction-container::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #FFD700, #FF6B6B);
-            border-radius: 25px;
-            z-index: -1;
-            animation: borderGlow 3s infinite;
-        }
-        
-        @keyframes borderGlow {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
-        }
-        
-        /* Title with gaming style */
-        .game-title {
-            color: #FFD700;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            text-shadow: 
-                3px 3px 0 #333,
-                6px 6px 10px rgba(255, 215, 0, 0.5);
-            animation: titlePulse 2s infinite;
-        }
-        
-        @keyframes titlePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        /* Character sprite */
-        .character {
-            font-size: 8rem;
-            margin: 20px 0;
-            display: inline-block;
-            animation: characterBounce 1s infinite;
-            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
-        }
-        
-        @keyframes characterBounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-20px); }
-            60% { transform: translateY(-10px); }
-        }
-        
-        /* Status messages */
-        .status-message {
-            color: #4ECDC4;
-            font-size: 1.2rem;
-            margin: 20px 0;
-            text-shadow: 2px 2px 0 #000;
-        }
-        
-        .sub-message {
-            color: #FF6B6B;
-            font-size: 0.8rem;
-            margin: 15px 0;
-            line-height: 1.6;
-            text-shadow: 1px 1px 0 #000;
-        }
-        
-        /* Progress bar */
-        .progress-container {
-            background: #333;
-            border: 3px solid #FFD700;
-            border-radius: 15px;
-            height: 30px;
-            margin: 30px 0;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #FFD700);
-            border-radius: 10px;
-            animation: progressFill 4s infinite;
-            position: relative;
-        }
-        
-        .progress-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: progressShine 2s infinite;
-        }
-        
-        @keyframes progressFill {
-            0% { width: 20%; }
-            50% { width: 75%; }
-            100% { width: 95%; }
-        }
-        
-        @keyframes progressShine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-        
-        /* Loading dots */
-        .loading-dots {
-            color: #FFD700;
-            font-size: 1rem;
-            margin: 20px 0;
-        }
-        
-        .loading-dots::after {
-            content: '';
-            animation: loadingDots 1.5s infinite;
-        }
-        
-        @keyframes loadingDots {
-            0%, 20% { content: '.'; }
-            40% { content: '..'; }
-            60%, 100% { content: '...'; }
-        }
-        
-        /* Gaming buttons */
-        .game-buttons {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .game-btn {
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
-            color: white;
-            border: 4px solid #333;
-            border-radius: 10px;
-            padding: 15px 25px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.7rem;
-            text-decoration: none;
-            text-shadow: 2px 2px 0 #333;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 0 #333;
-            display: inline-block;
-        }
-        
-        .game-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 9px 0 #333;
-        }
-        
-        .game-btn:active {
-            transform: translateY(0);
-            box-shadow: 0 3px 0 #333;
-        }
-        
-        /* Floating power-ups */
-        .floating-icons {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .floating-icon {
-            position: absolute;
-            font-size: 2rem;
-            animation: floatIcon 6s infinite linear;
-            opacity: 0.7;
-        }
-        
-        @keyframes floatIcon {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-10vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        /* ETA display */
-        .eta-display {
-            background: rgba(51, 51, 51, 0.9);
-            border: 3px solid #4ECDC4;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 25px 0;
-            color: #4ECDC4;
-            font-size: 0.7rem;
-            text-shadow: 1px 1px 0 #000;
-        }
-        
-        /* Page-specific styles */
-        .page-services { --accent-color: #FF6B6B; }
-        .page-courses { --accent-color: #4ECDC4; }
-        .page-projects { --accent-color: #FFD700; }
-        .page-contact { --accent-color: #FF8E53; }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .construction-container {
-                margin: 20px;
-                padding: 30px 20px;
-            }
-            
-            .game-title {
-                font-size: 1.8rem;
-            }
-            
-            .character {
-                font-size: 5rem;
-            }
-            
-            .status-message {
-                font-size: 1rem;
-            }
-            
-            .sub-message {
-                font-size: 0.7rem;
-            }
-            
-            .game-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-        
-        /* Particle effects */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #FFD700;
-            border-radius: 50%;
-            animation: particleFloat 8s infinite linear;
-        }
-        
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh) translateX(100px);
-                opacity: 0;
-            }
-        }
-    </style>
+    <title>Servicios - GeekFreak</title>
+    
+    <!-- CSS específico para servicios -->
+    <link rel="stylesheet" href="css/services.css">
+    
+    <!-- JavaScript específico para servicios -->
+    <script src="js/services.js" defer></script>
 </head>
 <body class="page-services">
+    <!-- Logo Mini para volver al index -->
+    <a href="index.html" class="logo-mini" title="Volver al Hub GeekFreak">
+        GF
+    </a>
+
     <!-- Animated background -->
     <div class="stars" id="stars"></div>
     
     <div class="floating-icons">
         <div class="floating-icon" style="left: 10%; animation-delay: 0s;">💻</div>
         <div class="floating-icon" style="left: 30%; animation-delay: 1s;">⚡</div>
-        <div class="floating-icon" style="left: 50%; animation-delay: 2s;">🚀</div>
-        <div class="floating-icon" style="left: 70%; animation-delay: 3s;">🔧</div>
-        <div class="floating-icon" style="left: 90%; animation-delay: 4s;">🛡️</div>
+        <div class="floating-icon" style="left: 50%; animation-delay: 2s;">🔧</div>
+        <div class="floating-icon" style="left: 70%; animation-delay: 3s;">🛠️</div>
+        <div class="floating-icon" style="left: 90%; animation-delay: 4s;">💼</div>
     </div>
     
     <div class="particles" id="particles"></div>
     
     <!-- Main content -->
     <div class="construction-container">
-        <h1 class="game-title">LOADING LEVEL...</h1>
+        <h1 class="game-title">SERVICIOS LOADING...</h1>
         
-        <div class="character">🚀</div>
+        <div class="character">💻</div>
         
-        <div class="status-message">SUBIENDO DE NIVEL</div>
+        <div class="status-message">COMPILANDO SOLUCIONES TI</div>
         
         <div class="progress-container">
-            <div class="progress-bar"></div>
+            <div class="progress-bar" style="width: 85%;"></div>
         </div>
         
         <div class="sub-message">
-            ¡Epic quest en progreso! 🎮<br><br>
-            Nuestros developers están codificando esta sección<br>
-            con las mejores tecnologías del gaming universe.<br><br>
-            <strong>• Optimizando performance...</strong><br>
-            <strong>• Cargando assets...</strong><br>
-            <strong>• Compilando awesomeness...</strong>
+            ¡Nuestros developers están buildando esta sección épica! 🚀<br><br>
+            Mientras tanto, aquí tienes un preview de nuestros<br>
+            <strong>SERVICIOS LEGENDARY:</strong>
+        </div>
+        
+        <div class="preview-grid services-preview">
+            <div class="preview-card service-card">
+                <span class="preview-icon service-icon">🌐</span>
+                <div class="preview-title service-title">WEB DEVELOPMENT</div>
+                <div class="preview-desc service-desc">Apps web escalables y modernas</div>
+                <div class="service-tier">PREMIUM</div>
+            </div>
+            <div class="preview-card service-card">
+                <span class="preview-icon service-icon">📱</span>
+                <div class="preview-title service-title">MOBILE APPS</div>
+                <div class="preview-desc service-desc">iOS & Android nativo y híbrido</div>
+                <div class="service-tier">ENTERPRISE</div>
+            </div>
+            <div class="preview-card service-card">
+                <span class="preview-icon service-icon">☁️</span>
+                <div class="preview-title service-title">CLOUD SOLUTIONS</div>
+                <div class="preview-desc service-desc">AWS, Azure, GCP deployment</div>
+                <div class="service-tier">PROFESSIONAL</div>
+            </div>
+            <div class="preview-card service-card">
+                <span class="preview-icon service-icon">🤖</span>
+                <div class="preview-title service-title">AI & MACHINE LEARNING</div>
+                <div class="preview-desc service-desc">Inteligencia artificial custom</div>
+                <div class="service-tier">PREMIUM</div>
+            </div>
+            <div class="preview-card service-card">
+                <span class="preview-icon service-icon">🛡️</span>
+                <div class="preview-title service-title">CYBERSECURITY</div>
+                <div class="preview-desc service-desc">Auditorías y pentesting</div>
+                <div class="service-tier">ENTERPRISE</div>
+            </div>
+            <div class="preview-card service-card">
+                <span class="preview-icon service-icon">⚡</span>
+                <div class="preview-title service-title">DEVOPS & CI/CD</div>
+                <div class="preview-desc service-desc">Automatización completa</div>
+                <div class="service-tier">PROFESSIONAL</div>
+            </div>
+        </div>
+        
+        <div class="service-packages">
+            <div class="package-title">📦 PAQUETES DE SERVICIOS</div>
+            <div class="package-list">
+                <div class="package starter">
+                    <div class="package-name">STARTER</div>
+                    <div class="package-price">$999</div>
+                    <div class="package-features">MVP • 1 mes • Soporte básico</div>
+                </div>
+                <div class="package professional">
+                    <div class="package-name">PRO</div>
+                    <div class="package-price">$2999</div>
+                    <div class="package-features">Full App • 3 meses • Soporte 24/7</div>
+                </div>
+                <div class="package enterprise">
+                    <div class="package-name">ENTERPRISE</div>
+                    <div class="package-price">$9999</div>
+                    <div class="package-features">Solución completa • 6 meses • Dedicado</div>
+                </div>
+            </div>
         </div>
         
         <div class="eta-display">
-            🎯 <strong>ETA:</strong> PRÓXIMO UPDATE - Q2 2025<br>
-            🏆 <strong>STATUS:</strong> IN DEVELOPMENT<br>
-            ⭐ <strong>COMPLETION:</strong> 75% DONE
+            💼 <strong>SERVICIOS DISPONIBLES:</strong> Development, Consultoría, Soporte<br>
+            🎯 <strong>ESPECIALIDADES:</strong> Full-Stack, Cloud, AI/ML, DevOps<br>
+            ⭐ <strong>EXPERIENCIA:</strong> 10+ años en proyectos enterprise<br>
+            🚀 <strong>PÁGINA COMPLETA:</strong> Coming Soon - Q2 2025
         </div>
         
-        <div class="loading-dots">LOADING</div>
+        <div class="loading-dots">OPTIMIZING CODE</div>
         
         <div class="game-buttons">
             <a href="index.html" class="game-btn">🏠 VOLVER AL HUB</a>
-            <a href="mailto:contacto@geekfreak.com" class="game-btn">📧 REPORTAR BUG</a>
+            <a href="mailto:servicios@geekfreak.com" class="game-btn">💬 CONSULTAR AHORA</a>
         </div>
     </div>
-    
-    <script>
-        // Create animated stars
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            const numStars = 50;
-            
-            for (let i = 0; i < numStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.width = (Math.random() * 3 + 1) + 'px';
-                star.style.height = star.style.width;
-                star.style.animationDelay = Math.random() * 2 + 's';
-                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                starsContainer.appendChild(star);
-            }
-        }
-        
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            
-            setInterval(() => {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
-                particlesContainer.appendChild(particle);
-                
-                setTimeout(() => {
-                    particle.remove();
-                }, 8000);
-            }, 500);
-        }
-        
-        // Change character and messages based on page
-        function setupPageContent() {
-            const path = window.location.pathname;
-            const character = document.querySelector('.character');
-            const title = document.querySelector('.game-title');
-            const status = document.querySelector('.status-message');
-            const container = document.querySelector('.construction-container');
-            
-            if (path.includes('servicios') || path.includes('services')) {
-                character.textContent = '💻';
-                title.textContent = 'SERVICIOS LOADING...';
-                status.textContent = 'COMPILANDO SOLUCIONES TI';
-                container.className += ' page-services';
-            } else if (path.includes('cursos') || path.includes('courses')) {
-                character.textContent = '🎓';
-                title.textContent = 'ACADEMY LOADING...';
-                status.textContent = 'GENERANDO CONOCIMIENTO';
-                container.className += ' page-courses';
-            } else if (path.includes('proyectos') || path.includes('projects')) {
-                character.textContent = '🚀';
-                title.textContent = 'PORTFOLIO LOADING...';
-                status.textContent = 'RENDERIZANDO PROYECTOS';
-                container.className += ' page-projects';
-            } else if (path.includes('contacto') || path.includes('contact')) {
-                character.textContent = '📱';
-                title.textContent = 'CONTACT LOADING...';
-                status.textContent = 'ESTABLECIENDO CONEXIÓN';
-                container.className += ' page-contact';
-            }
-        }
-        
-        // Gaming sound effects simulation (visual feedback)
-        function addSoundEffects() {
-            const buttons = document.querySelectorAll('.game-btn');
-            buttons.forEach(btn => {
-                btn.addEventListener('mouseenter', function() {
-                    this.style.filter = 'brightness(1.2)';
-                });
-                
-                btn.addEventListener('mouseleave', function() {
-                    this.style.filter = 'brightness(1)';
-                });
-                
-                btn.addEventListener('click', function() {
-                    this.style.transform = 'scale(0.95) translateY(0)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 100);
-                });
-            });
-        }
-        
-        // Easter egg: Konami code
-        let konamiCode = [];
-        const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // Up Up Down Down Left Right Left Right B A
-        
-        document.addEventListener('keydown', function(e) {
-            konamiCode.push(e.keyCode);
-            if (konamiCode.length > konamiSequence.length) {
-                konamiCode.shift();
-            }
-            
-            if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
-                document.body.style.animation = 'rainbow 1s infinite';
-                document.querySelector('.game-title').textContent = '🎉 CHEAT CODE ACTIVATED! 🎉';
-                document.querySelector('.status-message').textContent = 'LEVEL UP BONUS UNLOCKED!';
-                
-                setTimeout(() => {
-                    document.body.style.animation = '';
-                    setupPageContent();
-                }, 3000);
-            }
-        });
-        
-        // Rainbow effect for easter egg
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes rainbow {
-                0% { filter: hue-rotate(0deg); }
-                100% { filter: hue-rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Initialize everything
-        createStars();
-        createParticles();
-        setupPageContent();
-        addSoundEffects();
-        
-        // Update progress bar dynamically
-        setInterval(() => {
-            const progressBar = document.querySelector('.progress-bar');
-            const randomWidth = Math.random() * 30 + 70; // Between 70-100%
-            progressBar.style.width = randomWidth + '%';
-        }, 3000);
-    </script>
 </body>
 </html>

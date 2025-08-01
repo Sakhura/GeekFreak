@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Animated stars background */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Main container */
+.construction-container {
+    text-align: center;
+    max-width: 800px;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 5px solid #FFD700;
+    border-radius: 20px
+}
+/* Logo Mini GeekFreak - Para agregar a cualquier CSS de página */
+
+.logo-mini {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    border: 3px solid #333;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.5rem;
+    color: white;
+    text-shadow: 1px 1px 0 #333;
+    box-shadow: 0 4px 0 #333;
+    transition: all 0.3s ease;
+    animation: logoFloat 3s infinite ease-in-out;
+}
+
+.logo-mini:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 0 #333;
+    background: linear-gradient(45deg, #4ECDC4, #FF6B6B);
+}
+
+.logo-mini:active {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 2px 0 #333;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Variantes por página */
+.page-services .logo-mini {
+    background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+}
+
+.page-courses .logo-mini {
+    background: linear-gradient(45deg, #4ECDC4, #45B7A8);
+}
+
+.page-projects .logo-mini {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+}
+
+.page-contact .logo-mini {
+    background: linear-gradient(45deg, #FF8E53, #FF6B6B);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .logo-mini {
+        width: 60px;
+        height: 30px;
+        font-size: 0.4rem;
+        top: 15px;
+        left: 15px;
+    }
+}
+/* Logo Mini GeekFreak */
+.logo-mini {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    border: 3px solid #333;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.5rem;
+    color: white;
+    text-shadow: 1px 1px 0 #333;
+    box-shadow: 0 4px 0 #333;
+    transition: all 0.3s ease;
+    animation: logoFloat 3s infinite ease-in-out;
+}
+
+.logo-mini:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 0 #333;
+    background: linear-gradient(45deg, #4ECDC4, #FF6B6B);
+}
+
+.logo-mini:active {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 2px 0 #333;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Colores específicos por página */
+.page-services .logo-mini {
+    background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+}
+
+.page-courses .logo-mini {
+    background: linear-gradient(45deg, #4ECDC4, #45B7A8);
+}
+
+.page-projects .logo-mini {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+}
+
+.page-contact .logo-mini {
+    background: linear-gradient(45deg, #FF8E53, #FF6B6B);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .logo-mini {
+        width: 60px;
+        height: 30px;
+        font-size: 0.4rem;
+        top: 15px;
+        left: 15px;
+    }
+}
