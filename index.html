@@ -3,35 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeekFreak - Portal Retro Gaming TI</title>
+    <title>GeekFreak - Portal Retro Gaming TI Interactivo</title>
+    
+    <!-- CSS Files -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/interactive-effects.css">
+    
+    <!-- JavaScript Files -->
     <script src="js/script.js" defer></script>
+    
+    <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Meta Tags para SEO -->
+    <meta name="description" content="GeekFreak - Desarrollo de software, consultoría TI y cursos de programación con metodología retro-gaming. ¡Level up tu carrera tech!">
+    <meta name="keywords" content="desarrollo software, programación, cursos tech, consultoría TI, bootcamp, geekfreak">
+    <meta name="author" content="GeekFreak">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="GeekFreak - Portal Retro Gaming TI">
+    <meta property="og:description" content="Desarrollamos software, asesoramos proyectos y formamos a los mejores profesionales TI">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://geekfreak.cl">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-icon">🎮</div>
+        <div class="loading-title">GEEKFREAK</div>
+        <div class="loading-subtitle">LOADING PORTAL...</div>
+        <div class="loading-bar-container">
+            <div id="loadingBar" class="loading-bar"></div>
+        </div>
+        <div class="loading-hint">Press any key to continue...</div>
+    </div>
+
+    <!-- Particle System Container -->
+    <canvas id="particleCanvas"></canvas>
+    
     <!-- Animated background elements -->
-    <div class="clouds">
-        <div class="cloud cloud1"></div>
-        <div class="cloud cloud2"></div>
+    <div class="clouds" id="clouds">
+        <div class="cloud cloud1">
+            <div class="cloud-part cloud-part-1"></div>
+            <div class="cloud-part cloud-part-2"></div>
+        </div>
+        <div class="cloud cloud2">
+            <div class="cloud-part cloud-part-1"></div>
+            <div class="cloud-part cloud-part-2"></div>
+        </div>
+        <div class="cloud cloud3">
+            <div class="cloud-part cloud-part-1"></div>
+            <div class="cloud-part cloud-part-2"></div>
+        </div>
     </div>
     
-    <div class="power-ups">
-        <div class="power-up">🖥️</div>
-        <div class="power-up">⚡</div>
-        <div class="power-up">🚀</div>
-        <div class="power-up">💻</div>
-        <div class="power-up">🔧</div>
-    </div>
+    <!-- Power-ups container -->
+    <div class="power-ups" id="powerUps"></div>
+    
+    <!-- Game UI -->
+   <!-- <div class="game-ui">
+        <div class="health-section">
+            <div class="ui-label">❤️ HEALTH</div>
+            <div class="health-bar-container">
+                <div id="healthFill" class="health-fill"></div>
+            </div>
+        </div>
+        <div class="mana-section">
+            <div class="ui-label">⚡ MANA</div>
+            <div class="mana-bar-container">
+                <div id="manaFill" class="mana-fill"></div>
+            </div>
+        </div>
+    </div>-->
+    
+    <!-- Notifications container -->
+    <div id="notifications" class="notifications-container"></div>
     
     <!-- Score display -->
-    <div class="score">
-        <span class="coin">🪙</span>SCORE: 999999
+    <div class="score clickable-element" id="scoreDisplay">
+        <span class="coin">🪙</span>SCORE: <span id="scoreValue">999999</span>
     </div>
     
     <!-- Header -->
     <header class="header">
         <div class="container">
-            <h1 class="logo">GEEKFREAK</h1>
+            <h1 class="logo clickable-element" id="mainLogo">GEEKFREAK</h1>
         </div>
     </header>
     
@@ -39,66 +99,193 @@
     <nav class="nav">
         <div class="container">
             <ul>
-                <li><a href="#home">🏠 INICIO</a></li>
-                <li><a href="servicios.html">💻 SERVICIOS</a></li>
-                <li><a href="cursos.html">🎓 CURSOS</a></li>
-                <li><a href="proyectos.html">🚀 PROYECTOS</a></li>
-                <li><a href="contacto.html">📧 CONTACTO</a></li>
+                <li><a href="#home" class="nav-link clickable-element">🏠 INICIO</a></li>
+                <li><a href="servicios.html" class="nav-link clickable-element">💻 SERVICIOS</a></li>
+                <li><a href="cursos.html" class="nav-link clickable-element">🎓 CURSOS</a></li>
+                <li><a href="proyectos.html" class="nav-link clickable-element">🚀 PROYECTOS</a></li>
+                <li><a href="contacto.html" class="nav-link clickable-element">📧 CONTACTO</a></li>
             </ul>
-    <a href="https://wa.me/56912345678" target="_blank">
-  <img src="whatsapp-icon.png" alt="WhatsApp" />
-  Contáctanos por WhatsApp
-</a>
-</a>
         </div>
     </nav>
     
     <!-- Main content -->
-    <main class="main">
+    <main class="main" id="home">
         <div class="container">
             <!-- Hero section -->
-            <section class="hero">
+            <section class="hero clickable-element" id="heroSection">
                 <h1>¡LEVEL UP!</h1>
                 <p>Desarrollamos software, asesoramos proyectos y formamos a los mejores profesionales TI con metodología retro-gaming. ¡Presiona START y comienza tu transformación digital!</p>
-                <a href="servicios.html" class="cta-button">💻 ¡START!</a>
+                <a href="servicios.html" class="cta-button clickable-element" id="startButton">💻 ¡START!</a>
+            </section>
+            
+            <!-- Stats section -->
+            <section class="stats-section">
+                <div class="stat-card clickable-element">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-number" data-counter="150">62</div>
+                    <div class="stat-label">REPOSITORIO GITHUB</div>
+                </div>
+                
+                <div class="stat-card clickable-element">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number" data-counter="500">432</div>
+                    <div class="stat-label">ESTUDIANTES FORMADOS</div>
+                </div>
+                
+                <div class="stat-card clickable-element">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-number" data-counter="98">93</div>
+                    <div class="stat-label">% SATISFACCIÓN</div>
+                </div>
+                
+                <div class="stat-card clickable-element">
+                    <div class="stat-icon">🚀</div>
+                    <div class="stat-number" data-counter="24">34</div>
+                    <div class="stat-label">TECNOLOGÍAS DOMINADAS</div>
+                </div>
             </section>
             
             <!-- Features -->
             <section class="features">
-                <div class="feature-card">
+                <div class="feature-card clickable-element" data-feature="development">
                     <span class="feature-icon">💻</span>
                     <h3>DESARROLLO SOFTWARE</h3>
                     <p>Creamos aplicaciones web, móviles y sistemas empresariales con las últimas tecnologías. Desde MVP hasta soluciones enterprise escalables.</p>
+                    <div class="feature-tech">
+                        <span class="tech-tag tech-react">React</span>
+                        <span class="tech-tag tech-node">Node.js</span>
+                        <span class="tech-tag tech-python">Python</span>
+                    </div>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card clickable-element" data-feature="consulting">
                     <span class="feature-icon">🎯</span>
                     <h3>CONSULTORÍA TI</h3>
                     <p>Asesoramos en arquitectura de software, transformación digital y optimización de procesos. Tu empresa al siguiente nivel tecnológico.</p>
+                    <div class="feature-tech">
+                        <span class="tech-tag tech-cloud">Cloud</span>
+                        <span class="tech-tag tech-devops">DevOps</span>
+                        <span class="tech-tag tech-ai">AI/ML</span>
+                    </div>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card clickable-element" data-feature="courses">
                     <span class="feature-icon">🎓</span>
                     <h3>CURSOS & BOOTCAMPS</h3>
                     <p>Formación intensiva en programación, DevOps, ciberseguridad y más. Metodología gamificada que hace el aprendizaje adictivo.</p>
+                    <div class="feature-tech">
+                        <span class="tech-tag tech-fullstack">Full-Stack</span>
+                        <span class="tech-tag tech-cybersec">Cybersec</span>
+                        <span class="tech-tag tech-blockchain">Blockchain</span>
+                    </div>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card clickable-element" data-feature="fullstack">
                     <span class="feature-icon">⚡</span>
                     <h3>TECNOLOGÍAS FULL STACK</h3>
                     <p>Dominamos React, Node.js, Python, Docker, AWS, Azure y más. Stack tecnológico completo para cualquier desafío.</p>
+                    <div class="feature-tech">
+                        <span class="tech-tag tech-react-alt">React</span>
+                        <span class="tech-tag tech-node-alt">Node</span>
+                        <span class="tech-tag tech-aws">AWS</span>
+                    </div>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card clickable-element" data-feature="automation">
                     <span class="feature-icon">🚀</span>
                     <h3>AUTOMATIZACIÓN</h3>
                     <p>Implementamos CI/CD, DevOps y automatización de procesos. Acelera tu desarrollo y mejora la calidad del código.</p>
+                    <div class="feature-tech">
+                        <span class="tech-tag tech-docker">Docker</span>
+                        <span class="tech-tag tech-k8s">K8s</span>
+                        <span class="tech-tag tech-jenkins">Jenkins</span>
+                    </div>
                 </div>
                 
-                <div class="feature-card">
-                    <span class="feature-icon">🛡️</span>
-                    <h3>CIBERSEGURIDAD</h3>
-                    <p>Protegemos tu infraestructura con las mejores prácticas de seguridad. Auditorías, pentesting y formación especializada.</p>
+               <a href="servicios.html#ciberseguridad" class="feature-card clickable-element" data-feature="security">
+    <span class="feature-icon">🛡️</span>
+    <h3>CIBERSEGURIDAD</h3>
+    <p>Protegemos tu infraestructura con las mejores prácticas de seguridad. Auditorías, pentesting y formación especializada.</p>
+    <div class="feature-tech">
+        <span class="tech-tag tech-pentesting">Pentesting</span>
+        <span class="tech-tag tech-security">Security</span>
+        <span class="tech-tag tech-forensics">Forensics</span>
+    </div>
+</a>
+
+            </section>
+            
+            <!-- Technologies Showcase -->
+            <section class="tech-showcase">
+                <h2 class="tech-showcase-title">🔧 NUESTRO ARSENAL TECNOLÓGICO</h2>
+                <div class="tech-grid">
+                    <div class="tech-item clickable-element" data-tech="react">
+                        <div class="tech-item-icon">⚛️</div>
+                        <div class="tech-item-name">React</div>
+                    </div>
+                    <div class="tech-item clickable-element" data-tech="nodejs">
+                        <div class="tech-item-icon">🟢</div>
+                        <div class="tech-item-name">Node.js</div>
+                    </div>
+                    <div class="tech-item clickable-element" data-tech="python">
+                        <div class="tech-item-icon">🐍</div>
+                        <div class="tech-item-name">Python</div>
+                    </div>
+                    <div class="tech-item clickable-element" data-tech="docker">
+                        <div class="tech-item-icon">🐳</div>
+                        <div class="tech-item-name">Docker</div>
+                    </div>
+                    <div class="tech-item clickable-element" data-tech="aws">
+                        <div class="tech-item-icon">☁️</div>
+                        <div class="tech-item-name">AWS</div>
+                    </div>
+                    <div class="tech-item clickable-element" data-tech="ai">
+                        <div class="tech-item-icon">🤖</div>
+                        <div class="tech-item-name">AI/ML</div>
+                    </div>
+                    <div class="tech-item clickable-element" data-tech="vue">
+                        <div class="tech-item-icon">💚</div>
+                        <div class="tech-item-name">Vue.js</div>
+                    </div>
+                    <div class="tech-item clickable-element" data-tech="kubernetes">
+                        <div class="tech-item-icon">⚙️</div>
+                        <div class="tech-item-name">Kubernetes</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="testimonials-section">
+                <h2 class="section-title">💬 LO QUE DICEN NUESTROS CLIENTES</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card clickable-element">
+                        <div class="testimonial-avatar">👨‍💼</div>
+                        <div class="testimonial-text">"GeekFreak transformó nuestra startup. Pasamos de MVP a 100K usuarios en 6 meses."</div>
+                        <div class="testimonial-author">- CEO TechStart</div>
+                    </div>
+                    <div class="testimonial-card clickable-element">
+                        <div class="testimonial-avatar">👩‍💻</div>
+                        <div class="testimonial-text">"El bootcamp de Full-Stack me cambió la vida. Ahora trabajo en FAANG."</div>
+                        <div class="testimonial-author">- Ex-Estudiante</div>
+                    </div>
+                    <div class="testimonial-card clickable-element">
+                        <div class="testimonial-avatar">👨‍🔧</div>
+                        <div class="testimonial-text">"Su consultoría en DevOps redujo nuestros deploys de horas a minutos."</div>
+                        <div class="testimonial-author">- CTO FinTech</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action Section -->
+            <section class="cta-section">
+                <div class="cta-container">
+                    <h2 class="cta-title">🚀 ¿LISTO PARA EL SIGUIENTE NIVEL?</h2>
+                    <p class="cta-description">Únete a la revolución tech con metodología gaming. Tu carrera profesional nunca fue tan épica.</p>
+                    <div class="cta-buttons">
+                        <a href="servicios.html" class="cta-btn primary clickable-element">💻 VER SERVICIOS</a>
+                        <a href="cursos.html" class="cta-btn secondary clickable-element">🎓 EXPLORAR CURSOS</a>
+                        <a href="contacto.html" class="cta-btn tertiary clickable-element">📧 CONTACTAR</a>
+                    </div>
                 </div>
             </section>
         </div>
@@ -107,15 +294,56 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>© 2025 GEEKFREAK - DESARROLLAMOS EL FUTURO CON ESTILO RETRO | GAME OVER? CTRL+Z TO CONTINUE!</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🏢 GEEKFREAK</h3>
+                    <p>Desarrollamos el futuro con estilo retro</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link clickable-element">📧</a>
+                        <a href="#" class="social-link clickable-element">💼</a>
+                        <a href="#" class="social-link clickable-element">🐦</a>
+                        <a href="#" class="social-link clickable-element">📱</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>SERVICIOS</h4>
+                    <ul>
+                        <li><a href="servicios.html" class="clickable-element">Desarrollo Web</a></li>
+                        <li><a href="servicios.html" class="clickable-element">Apps Móviles</a></li>
+                        <li><a href="servicios.html" class="clickable-element">Consultoría TI</a></li>
+                        <li><a href="servicios.html" class="clickable-element">DevOps</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>FORMACIÓN</h4>
+                    <ul>
+                        <li><a href="cursos.html" class="clickable-element">Bootcamp Full-Stack</a></li>
+                        <li><a href="cursos.html" class="clickable-element">Curso Python</a></li>
+                        <li><a href="cursos.html" class="clickable-element">Ciberseguridad</a></li>
+                        <li><a href="cursos.html" class="clickable-element">Cloud Computing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>CONTACTO</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">📧 contacto@geekfreak.cl</div>
+                        <div class="contact-item">📱 +56 9 4439 8656</div>
+                        <div class="contact-item">🌐 Santiago, Chile</div>
+                        <div class="contact-item">⏰ Lun-Vie 9:00-18:00</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 GEEKFREAK - DESARROLLAMOS EL FUTURO CON ESTILO RETRO | GAME OVER? CTRL+Z TO CONTINUE!</p>
+            </div>
         </div>
     </footer>
      
     <!-- Floating Chatbox -->
     <div class="chatbox-container">
-        <div class="chatbox-button" id="chatboxBtn">
+        <div class="chatbox-button clickable-element" id="chatboxBtn">
             💬
-            <div class="chat-notification" id="chatNotification">1</div>
+            <div id="chatNotification" class="chat-notification">1</div>
         </div>
         
         <div class="chat-window" id="chatWindow">
@@ -131,15 +359,48 @@
                     • Información sobre servicios<br>
                     • Consultas técnicas<br>
                     • Cotizaciones de proyectos<br>
-                    • Cursos disponibles
+                    • Cursos disponibles<br><br>
+                    <em>¡Haz clic en elementos para ganar puntos! 🎮</em>
                 </div>
             </div>
             
             <div class="chat-input-container">
                 <input type="text" class="chat-input" id="chatInput" placeholder="Escribe tu mensaje...">
-                <button class="chat-send" id="chatSend">SEND</button>
+                <button class="chat-send clickable-element" id="chatSend">SEND</button>
             </div>
         </div>
+    </div>
+
+    <!-- Achievement System -->
+    <div id="achievementPanel" class="achievement-panel">
+        <div class="achievement-title">🏆 ACHIEVEMENTS</div>
+        <div id="achievementList" class="achievement-list"></div>
+    </div>
+
+    <!-- Mini Games Panel -->
+    <div id="miniGamesPanel" class="mini-games-panel">
+        <div class="mini-games-title">🎮 MINI GAMES</div>
+        <button class="mini-game-btn clickable-element" data-game="snake">🐍 SNAKE</button>
+        <button class="mini-game-btn clickable-element" data-game="memory">🧠 MEMORY</button>
+        <button class="mini-game-btn clickable-element" data-game="quiz">❓ TECH QUIZ</button>
+    </div>
+
+    <!-- Easter Egg Trigger -->
+    <div id="easterEggTrigger" class="easter-egg-trigger">
+        Press ↑↑↓↓←→←→BA for surprise
+    </div>
+
+    <!-- Background Music Toggle -->
+    <div id="musicToggle" class="music-toggle clickable-element" title="Toggle Background Music">
+        🎵
+    </div>
+
+    <!-- WhatsApp Float Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/56944398656" target="_blank" class="whatsapp-btn clickable-element">
+            <span class="whatsapp-icon">📱</span>
+            <span class="whatsapp-text">WhatsApp</span>
+        </a>
     </div>
 </body>
 </html>
